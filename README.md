@@ -1,4 +1,5 @@
-# StackReadingSeminar
+# Small Reading Seminar on Algebraic Stacks
+
 
 | date     | topic                  | speaker  |
 |----------|------------------------|----------|
