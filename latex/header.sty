@@ -1,0 +1,273 @@
+\usepackage[margin=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern, setspace}
+\usepackage{amsmath, amssymb, mathtools, amsthm, mathrsfs}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{adjustbox}
+\usepackage{subfiles}
+% todonotes + margin gegen error
+\setlength {\marginparwidth }{2cm}
+\usepackage{todonotes}
+
+%\usepackage{hyperref}
+
+
+%%% lower case mathcal Source: https://www.reddit.com/r/LaTeX/comments/bbiy3n/lowercase_mathcal_letters/
+%\makeatletter
+%\let\old@mathcal=\mathcal
+%\let\old@dutchcal=\mathcal
+%\renewcommand{\mathcal}[1]{%
+%  \if A#1
+%     \old@mathcal{A}
+%  \fi
+%  \if a#1
+%     \old@dutchcal{a}
+%  \fi
+%}
+%\makeatother
+%%% lower case mathcal done. 
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2em}
+
+\newcommand{\textsfnormal}[1]{\textnormal{$\textsf{#1}$}}
+
+
+%\newcommand{\exercise}[1]{\newpage \subsection*{Exercise #1}}
+\newcommand{\exercise}[1]{\textbf{Exercise #1.}}
+\newcommand{\solution}[1]{\subfile{Exercises/Ex#1/Ex#1.tex}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\GG}{\mathbb{G}}
+\newcommand{\UH}{\mathbb{H}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\VV}{\mathbb{V}}
+\newcommand{\XX}{\mathbb{X}}
+\newcommand{\RC}{\mathbb{RC}}
+\newcommand{\HH}{\mathcal{H}}
+\newcommand{\sC}{\mathscr{C}}
+\newcommand{\sD}{\mathscr{D}}
+\newcommand{\sU}{\mathscr{U}}
+\newcommand{\sfC}{\textsfnormal{C}}
+\newcommand{\ci}{\mathrm{i}}
+\newcommand{\cd}{\mathrm{d}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\opp}{\op}
+\newcommand{\pre}{\mathrm{pre}}
+\newcommand{\ab}{\textsfnormal{ab}}
+\newcommand{\Ab}{\textsfnormal{Ab}}
+\newcommand{\AbGrp}{(\textnormal{AbGrp})}
+\newcommand{\Ch}{\textsfnormal{Ch}}
+\newcommand{\SES}{\textsfnormal{SES}}
+\newcommand{\Grp}{\textnormal{(Grps)}}
+\newcommand{\Top}{\textsfnormal{Top}}
+\newcommand{\Ouv}{\textsfnormal{Ouv}}
+\newcommand{\Sets}{(\mathrm{Sets})}
+\newcommand{\Sch}{(\mathrm{Sch})}
+\newcommand{\SchOver}[1]{(\mathrm{Sch}/ #1)}
+\newcommand{\SchOO}[2]{(\mathrm{Sch}/ #1 / #2)}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand {\cE}{\mathcal {E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\CO}{\mathcal{O}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand\cHH{\check{\mathrm{H}}} %Cech-Cohomology
+\newcommand{\fm}{\mathfrak{m}}
+\newcommand{\fn}{\mathfrak{n}}
+\newcommand{\fp}{\mathfrak{p}}
+\newcommand{\pt}{\text{pt}}
+\newcommand{\pr}{\text{pr}}
+\newcommand{\sing}{\text{sing}}
+\newcommand{\cell}{\text{cell}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Iff}{\Longleftrightarrow}
+\newcommand{\Implies}{\Longrightarrow}
+\renewcommand{\phi}{\varphi}
+\newcommand{\eps}{\varepsilon}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\Ker}{Ker}
+\renewcommand{\ker}{\Ker}
+\DeclareMathOperator*{\colim}{colim}
+\DeclareMathOperator{\inv}{inv}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\inc}{inc}
+\DeclareMathOperator{\Coker}{Coker}
+\DeclareMathOperator{\coker}{Coker}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\Br}{Br}
+\DeclareMathOperator{\Frob}{Frob}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\hght}{ht}
+\DeclareMathOperator{\Isom}{Isom}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\img}{Im}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\supp}{Supp}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Hom}{Hom}
+\newcommand{\InHom}{\underline{\mathrm{Hom}}}
+\DeclareMathOperator{\Eig}{Eig}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\spec}{Spec}
+\DeclareMathOperator{\spf}{Spf}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Spf}{Spf}
+\DeclareMathOperator{\proj}{Proj}
+\DeclareMathOperator{\Proj}{Proj}
+\newcommand{\rSpec}{\underline{\spec}}
+\newcommand {\rProj}{\underline{\operatorname{Proj}}}
+\DeclareMathOperator{\Cl}{Cl}
+\DeclareMathOperator{\Weil}{Weil}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Grass}{Grass}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\LC}{LC}
+\DeclareMathOperator{\Cont}{Cont}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+\newcommand{\wtilde}[1]{\widetilde{#1}}
+\newcommand{\what}[1]{\widehat{#1}}
+\newcommand{\clos}[1]{\overline{#1}}
+\newcommand{\Span}[1]{\left\langle #1 \right\rangle}
+\newcommand{\sub}[0]{\trianglelefteq}
+\renewcommand{\div}{\operatorname{div}}
+\renewcommand{\o}{\varnothing}
+\renewcommand{\O}{\mathcal O}
+\renewcommand{\empty}{\varnothing}
+\renewcommand{\hat}{\widehat}
+\renewcommand{\bar}{\overline}
+\newcommand{\D}{\partial}
+\newcommand{\dc}{\operatorname{d}} 
+\newcommand{\tensor}{\otimes}
+\newcommand{\ec}{\mathrm {e}}
+
+\newcommand {\lacts}{\curvearrowright}
+\newcommand {\surj}{\twoheadrightarrow}
+\newcommand {\inj}{\hookrightarrow}
+\newcommand {\xto}[1]{\xrightarrow{#1}}
+\newcommand {\iso}{\xto{\sim}}
+\newcommand {\ot}{\leftarrow}
+\newcommand {\xot}[1]{\xleftarrow{#1}}
+\newcommand {\xinj}[1]{\xhookrightarrow{#1}}
+\newcommand {\TM}{\Tilde M[\tfrac 16]}
+\newcommand{\TMn}{\Tilde M_n}
+\newcommand{\FMn}{M_n[\tfrac 16]}
+\newcommand{\TMQuot}{\GG_m \backslash \TM}
+\newcommand{\TMnQuot}{\GG_m \backslash \TMn}
+\newcommand {\FM}{M[\frac 16]}
+\newcommand {\abs}[1]{\lvert  #1 \rvert}
+
+\newcommand{\PROD}{\textnormal{PROD}}
+\newcommand{\LOCS}{\textnormal{LOCS}}
+\newcommand{\LOCT}{\textnormal{LOCT}}
+\newcommand{\BC}{\textnormal{BC}}
+\newcommand{\COMP}{\textnormal{COMP}}
+\newcommand{\QCoh}{(\textnormal{QCoh})}
+\newcommand{\QCohO}[1]{(\textnormal{QCoh}_{\cO_{#1}})}
+\newcommand{\Mod}{\text{Mod}}
+\newcommand{\QCohs}{\text{QCohs}}
+
+
+% Mihatsch-special.
+\newcommand{\Grs}{G_{\mathrm{rs}}(\Q_b)} % regular semi-simple elements
+\newcommand{\Mss}{\cM_K^{\mathrm{SuSi}}} % regular semi-simple elements
+\newcommand{\Ell}{\mathit{Ell}} % regular semi-simple elements
+\newcommand{\Lie}{\operatorname{Lie}} % regular semi-simple elements
+\newcommand{\FHom}{\underline{\Hom}}
+\newcommand{\FIsom}{\underline{\Isom}}
+\newcommand{\FAut}{\underline{\Aut}}
+\newcommand{\FEnd}{\underline{\End}}
+\newcommand{\bareta}{\bar \eta}
+\newcommand{\OLb}{O_L[b^{-1}]}
+\newcommand{\TA}{\Tilde A}
+\newcommand{\omegaA}{\omega_{A^*}}
+
+% Caraiani-Special
+
+\newcommand{\GK}{\mathrm G_K}
+\newcommand{\Gk}{\mathrm G_k}
+\newcommand{\GQ}{\mathrm G_\Q}
+\DeclareMathOperator{\Het}{H_{\textnormal{et}}}
+\DeclareMathOperator{\Art}{Art}
+\DeclareMathOperator{\val}{val}
+
+
+
+
+\newcommand{\mat}[4]{\begin{pmatrix}
+    #1 & #2\\
+    #3 & #4
+\end{pmatrix}}
+\newcommand{\smat}[4]{\big(\begin{smallmatrix}
+    #1 & #2\\
+    #3 & #4
+\end{smallmatrix}\big)}
+\newcommand{\abcd}{\smat abcd}
+
+\newcommand{\svec}[2]{\big(\begin{smallmatrix}
+    #1\\
+    #2
+\end{smallmatrix}\big)}
+
+\newcommand{\red}[1]{\color{red}\textnormal{[#1]}\ \color{black}}
+\newcommand{\blue}[1]{\color{blue}\textnormal{[#1]}\ \color{black}}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+
+
+\theoremstyle{definition}
+\newtheorem{fact}[thm]{Fact}
+
+
+\newtheorem{defi}[thm]{Definition}
+%\newtheorem*{lema}{Lemma}
+\newtheorem{deflem}[thm]{Definition and Lemma}
+\newtheorem{exmpl}[thm]{Example}
+%\newtheorem*{cora}{Korollar}
+%\newtheorem*{thma}{Satz}
+%\newtheorem*{defa}{Definition}
+\numberwithin{equation}{section}
