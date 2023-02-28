@@ -1,0 +1,246 @@
+\documentclass[a4paper,11pt]{article}
+\pagenumbering{arabic}
+\usepackage{../header}
+\usepackage{../quiver}
+
+\begin{document}
+
+\section{Quotient Stacks} 
+We want to find out how stacks arise when taking quotients by group actions.
+To start things off, let's recall what a group action of presheafs is. 
+\begin{defi}[Group action on a presheaf.]
+    Let $\cC$ be a (locally small) category, let $X: \cC^\opp \to \Sets$ be a 
+    presheaf of sets and let $G: \cC^\opp \to \Grp$ be a presheaf of groups. 
+    A \textit{left action} of $G$ on $X$ is a morphism $\sigma: G \times X \to X$
+    which behaves like a left group action on points. In this case, $X$ is sometimes
+    called a \textit{presheaf of $G$-sets.}
+\end{defi}
+
+\begin{defi}[Quotient presheaf]
+    Given a presheaf of groups $G$ and a sheaf of $G$-sets $X$, we can build the
+    quotient presheaf $(X/G)$, via the functor
+    \begin{equation*}
+        S \mapsto X(S)/G(S).
+    \end{equation*}
+\end{defi}
+
+Instead of quotient sets, we will look at quotient groupoids.
+\begin{defi}[Quotient Groupoid]
+    Let $X$ be a set with a group action $G \lacts X$. Then we define
+    the \textit{quotient groupoid} $[X/G]$ given by the category with
+    objects $x \in X$ and $\Hom(x,x') = \{g \in G \mid gx = x'\}$. 
+\end{defi}
+One easily verifies (Exercise 0.4.7) that an action $G \lacts X$ is free (i.e.,
+has trivial stabilizers) iff $[X/G]$ is a set.
+
+A Quotient prestack is a scheme-theoretic/relative version of the quotient groupoid.
+It behaves to quotient groupoids the same way quotient presheaves behave to 
+quotient sets.
+
+\begin{defi}[Quotient prestack]
+Let $G \to S$ be a smooth affine group scheme acting on a scheme $U$ 
+over $S$. We define the \textit{quotient prestack $[U/G]^\pre$} as the
+category over $\SchOver S$ where the fiber category over an 
+$S$-scheme $T$ is the quotient groupoid $[U(T)/G(T)]$. In other words,
+the objects of $[U/G]$ are given by morphisms $T \to U$ over $S$.
+A morphism from $u' \in U(T')$ to $u \in U(T)$ is the
+data of a map $f: T' \to T$ and an element $g \in G(T')$ such that 
+$u' = g \cdot (u \circ f)$. Composition of maps is given by 
+$(g, f) \circ (g', f') = (g'g, f \circ f')$. 
+\end{defi}
+\exercise {2.3.15 a)} $[U/G]^\pre$ is a prestack. There is not much to check. 
+It is a category fibered over groupoids by definition, which is already a good sign.
+\begin{enumerate}
+    \item \textit{Pullbacks exist.} Given an object $(a \mapsto W) \in
+        [U/G]^{\pre}$ (which is really just a morphism $W \to U$) and a
+        morphism $f: W' \to W$, we simply set $f^* a = (a \circ f)$. 
+    \item \textit{Pullbacks are unique up to unique isomorphism.} This is a bit more
+        involved, but the following diagram essentially gives the proof.
+    \[\begin{tikzcd}[ampersand replacement=\&]
+    	b \&\& {a'} \&\& a \\
+    	\\
+    	V \&\& {W'} \&\& W
+    	\arrow[maps to, from=1-5, to=3-5]
+    	\arrow[maps to, from=1-3, to=3-3]
+    	\arrow["{(g_1,f)}"', from=1-3, to=1-5]
+    	\arrow["f"{description}, from=3-3, to=3-5]
+    	%\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-3, to=3-5]
+    	\arrow["{f'}"{description}, from=3-1, to=3-3]
+    	\arrow["{(g_2, f \circ f')}", curve={height=-12pt}, from=1-1, to=1-5]
+    	\arrow[maps to, from=1-1, to=3-1]
+    	\arrow["{(g_2 g_1^{-1}, f')}"', dashed, from=1-1, to=1-3]
+    \end{tikzcd}\]
+        Here, we start with an arrow $a' \to a$, which comes with an element 
+        $g_1 \in G(W)$ such that $a' = g \cdot (a \circ f)$. Similarly, an arrow 
+        $b \to a$ comes with an element $g_2 \in G(W)$ such that 
+        $b = g_2 \cdot (a \circ f \circ f')$. But now $b \to a$ factors through 
+        $a' \to a$, as
+        \begin{equation*}
+            b = g_2 ( a \circ f \circ f') = g_2 g_1^{-1} \cdot g_1 \cdot (
+            a \circ f) \circ f' = g_2 g_1^{-1} \cdot (a' \circ f'),
+        \end{equation*}
+        and this factorization is unique, as $(hg_1 = g_2 \iff h = g_2 g_1^{-1})$.
+\end{enumerate}
+Note that if $G$ acts freely on $U$ (i.e., the action map $(\sigma, p_2): 
+G \times_S U \to U \times_S U$ is a monomorphism) if and only if 
+$[U/G]^\pre$ is equivalent to a presheaf. Indeed, in this case, the 
+action maps are monomorphisms on points. Hence we have $[U(T)/G(T)] \cong 
+(U(T)/G(T))$ for all $T$, as there are no non-trivial stabilizers. This is
+\exercise{2.3.19}.
+
+Instead of thinking of an object of $[U/G]^\pre$ over a scheme $T$ 
+as a morphism $f: T \to U$, we could also think of it as a trivial 
+$G$-bundle over $T$:
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{G \times T} \& U \\
+	T,
+	\arrow["{p_2}", from=1-1, to=2-1]
+	\arrow["\tilde f", from=1-1, to=1-2]
+\end{tikzcd}\]
+where $\Tilde f$ sends $(g,s)$ to $g \cdot f(s)$. Hence, 
+$[U/G]^\pre$ parametrizes the trivial $G$-bundles. In this setting,
+it is clear that the quotient prestack is not a stack: If we are given 
+a cover $\{T_i \to T\}$ of $T$ together with trivial $G$-bundles 
+$G \times T_i \xto{\tilde f_i} X$ satisfying the cocycle conditions, the object 
+we obtain from gluing these local data does not have to glue to a trivial
+$G$-bundle again. Rather, this naturally leads to the definition of 
+\textit{principal $G$-bundles}. 
+
+Remember that a morphism $P \to T$ is called $G$-invariant if the diagram
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{G \times_S P} \&\& P \\
+	P \&\& T
+	\arrow["\sigma", from=1-1, to=1-3]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=2-1, to=2-3]
+	\arrow["{p_2}"', from=1-1, to=2-1]
+\end{tikzcd}\]
+    commutes.
+
+\begin{defi}[Principal $G$-Bundle / Torsor]
+    Let $G \to S$ be an fppf affine group scheme. A \textit{principal
+    $G$-bundle} over an $S$-scheme $T$ is a 
+    scheme $P$ with an action of $G$, given by a morphism
+    $\sigma: G \times_S P \to P$, such that 
+    $P \to T$ is a $G$-invariant fppf morphism and 
+    \begin{equation*}
+        (\sigma, p_2): G \times_S P \to P \times_T P, \quad
+        (g,p) \mapsto (gp, p)
+    \end{equation*}
+    is an isomorphism. (As isomorphisms can be checked fpqc-locally on $T$, this just
+    says that the action $G \lacts U$ is faithfully free fpqc-locally. This 
+    means that locally, $P$ is a trivial $G$-bundle.). If we equip $\SchOver S$
+    with some Grothendieck-topology (or more generally, if everything lives on
+    a site), we say that $P$ is a \textit{$G$-Torsor} if for every object $T
+    \in \SchOver S$ there is a covering $\{T_i \to T\}$ such that $P(T_i) \neq
+    \emptyset$. 
+\end{defi}
+
+    This motivates the definition of the quotient stack.
+\begin{defi}[Quotient stack]
+    We define the \textit{Quotient Stack} $[U/G]$ as the prestack over $\SchOver S$
+    whose obects over an $S$ scheme $T$ are diagrams
+\[\begin{tikzcd}[ampersand replacement=\&]
+	P \&\& U \\
+	\\
+	T
+	\arrow[from=1-1, to=3-1]
+	\arrow[from=1-1, to=1-3]
+\end{tikzcd}\]
+where $P \to T$ is a principal $G$-bundle and $P \to U$ is a $G$-equivariant morphism
+of schemes. A morphism $(P' \to T', P' \to U) \to (P \to T, P \to U)$ consists 
+of a morphism $T' \to T$ and a $G$-equivariant morphism $P' \to P$ of schemes 
+such that the diagram 
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{P'} \&\& P \&\& U \\
+	\\
+	{T'} \&\& T
+	\arrow[from=1-3, to=3-3]
+	\arrow[from=1-3, to=1-5]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-1]
+	\arrow[from=3-1, to=3-3]
+	\arrow[curve={height=-18pt}, from=1-1, to=1-5]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=3-3]
+\end{tikzcd}\]
+is commutative and the left square is cartesian.
+\end{defi}
+
+\exercise {2.3.15 b)} $[U/G]$ is a prestack. This is straight forward. Pullbacks
+are given by pullbacks, and one quickly verifies that indeed, if $P$ is a
+principal $G$-bundle over $T$, $P \times_T T'$ is a principal $G$-bundle over
+$T'$. The fact that pullbacks are universal just comes down to the fact that in
+any (locally small) category, if we are given a square 
+\[\begin{tikzcd}[ampersand replacement=\&]
+	{P''} \&\& {P'} \&\& P \\
+	\\
+	{T''} \&\& {T'} \&\& T
+	\arrow[from=1-5, to=3-5]
+	\arrow[from=1-3, to=1-5]
+	\arrow[from=1-3, to=3-3]
+	\arrow[from=3-3, to=3-5]
+	\arrow[from=3-1, to=3-3]
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-1]
+\end{tikzcd}\]
+in which the right square is cartesian, the left square is cartesian iff the 
+composition square is.
+
+\subsection*{Interesting exercises} % (fold)
+\exercise{2.3.22} \begin{enumerate}
+    \item[(a)] Show that there is a morphism $p : U \to [U/G]^\pre$ and 
+        a $2$-commutative diagram 
+        \[\begin{tikzcd}[ampersand replacement=\&]
+        	{G \times_S U} \&\& U \\
+        	\\
+        	U \&\& {[U/G]^\pre}
+        	\arrow["p", from=1-3, to=3-3]
+        	\arrow["p"', from=3-1, to=3-3]
+        	\arrow["{p_2}"', from=1-1, to=3-1]
+        	\arrow["\sigma", from=1-1, to=1-3]
+            \arrow["\alpha"', shorten <=20pt, shorten >=20pt, Rightarrow,
+            from=1-3, to=3-1]
+        \end{tikzcd}\]
+\item[(b)] The morphism $p$ is a categorical quotient among prestacks, i.e.
+    for every $2$-commutative diagram
+    \[\begin{tikzcd}[ampersand replacement=\&]
+    	{G \times_S U} \&\& U \\
+    	\\
+    	U \&\& {[U/G]^\pre} \\
+    	\&\&\& {\mathcal Z}
+    	\arrow["p", from=1-3, to=3-3]
+    	\arrow["p"', from=3-1, to=3-3]
+    	\arrow["{p_2}"', from=1-1, to=3-1]
+    	\arrow["\sigma", from=1-1, to=1-3]
+        \arrow["\alpha"', shorten <=20pt, shorten >=20pt, Rightarrow, from=1-3,
+        to=3-1]
+        \arrow[""{name=0, anchor=center, inner sep=0}, "\varphi"',
+        curve={height=12pt}, from=3-1, to=4-4]
+        \arrow[""{name=1, anchor=center, inner sep=0}, "\varphi",
+        curve={height=-12pt}, from=1-3, to=4-4]
+        \arrow["\tau", shift left=5, curve={height=-6pt}, shorten <=17pt,
+        shorten >=23pt, Rightarrow, from=1, to=0]
+    \end{tikzcd}\]
+    of prestacks, there exists a morphism $\chi: [U/G]^\pre \to \cZ$ and 
+    $2$-isomorphisms compatible with $\alpha$ and $\tau$ such that everything 
+    commutes. 
+\end{enumerate}
+
+\exercise{2.3.27} a) The square in part a) of the previous exercise is cartesian
+(this should correspond to the fact that the group actions are simply transitive). 
+
+\exercise{2.4.16} Let $G \to S$ be a smooth affine group scheme acting on 
+a scheme $U$ over $S$. 
+\begin{enumerate}
+    \item[(a)] Show that $[U/G]^\pre$ satisfies Axiom $(1)$ of a stack over
+        $\SchOver S_{et}$. 
+    \item[(b)] Show that $[U/G]$ is isomorphic to the stackification of 
+        $[U/G]^\pre$ over $(\SchOver S)_{et}$, and that 
+        $[U/G]^\pre \to [U/G]$ is fully faithful.
+\end{enumerate}
+
+\exercise{2.4.17} Show that $U \to [U/G]$ is a categorical quotient among stacks. 
+
+% subsection subsection name (end)
+
+\end{document}
