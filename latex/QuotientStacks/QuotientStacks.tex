@@ -37,6 +37,8 @@ A Quotient prestack is a scheme-theoretic/relative version of the quotient group
 It behaves to quotient groupoids the same way quotient presheaves behave to 
 quotient sets.
 
+Also, let's switch to scheme world. From now on, $\cC = \SchOver S$. 
+
 \begin{defi}[Quotient prestack]
 Let $G \to S$ be a smooth affine group scheme acting on a scheme $U$ 
 over $S$. We define the \textit{quotient prestack $[U/G]^\pre$} as the
@@ -106,7 +108,13 @@ we obtain from gluing these local data does not have to glue to a trivial
 $G$-bundle again. Rather, this naturally leads to the definition of 
 \textit{principal $G$-bundles}. 
 
-Remember that a morphism $P \to T$ is called $G$-invariant if the diagram
+
+\begin{defi}[Principal $G$-Bundle / Torsor]
+    Let $G \to S$ be an fppf affine group scheme. A \textit{principal
+    $G$-bundle} over an $S$-scheme $T$ is a 
+    scheme $P$ with an action of $G$, given by a morphism
+    $\sigma: G \times_S P \to P$, such that 
+    $P \to T$ is a $G$-invariant\footnote{Remember that a morphism $P \to T$ is called $G$-invariant if the diagram
 \[\begin{tikzcd}[ampersand replacement=\&]
 	{G \times_S P} \&\& P \\
 	P \&\& T
@@ -115,14 +123,8 @@ Remember that a morphism $P \to T$ is called $G$-invariant if the diagram
 	\arrow[from=2-1, to=2-3]
 	\arrow["{p_2}"', from=1-1, to=2-1]
 \end{tikzcd}\]
-    commutes.
-
-\begin{defi}[Principal $G$-Bundle / Torsor]
-    Let $G \to S$ be an fppf affine group scheme. A \textit{principal
-    $G$-bundle} over an $S$-scheme $T$ is a 
-    scheme $P$ with an action of $G$, given by a morphism
-    $\sigma: G \times_S P \to P$, such that 
-    $P \to T$ is a $G$-invariant fppf morphism and 
+commutes.}
+fppf morphism and 
     \begin{equation*}
         (\sigma, p_2): G \times_S P \to P \times_T P, \quad
         (g,p) \mapsto (gp, p)
@@ -242,5 +244,7 @@ a scheme $U$ over $S$.
 \exercise{2.4.17} Show that $U \to [U/G]$ is a categorical quotient among stacks. 
 
 % subsection subsection name (end)
+
+\contactend
 
 \end{document}
